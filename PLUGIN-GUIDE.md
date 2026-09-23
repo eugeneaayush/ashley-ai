@@ -38,10 +38,16 @@ The core workflow (plan, work, review, brainstorm, compound) is inherited from C
 
 The plugin is included in this starter kit under `plugin/`. To install it:
 
-**Option 1: Copy to your project**
+**Option 1: Copy the commands into your project**
 ```bash
-cp -r plugin/ your-company-os/.claude/plugins/company-os/
+mkdir -p your-company-os/.claude/commands/workflows
+cp plugin/commands/workflows/*.md your-company-os/.claude/commands/workflows/
 ```
+
+Claude Code does not discover plugins from a project's `.claude/plugins/` folder
+(plugins load via `claude --plugin-dir`, a marketplace install, or a skills
+directory). Project commands at `.claude/commands/workflows/<name>.md` are
+invoked as `/workflows:<name>`, which matches the names used throughout this guide.
 
 **Option 2: Ask Claude**
 ```

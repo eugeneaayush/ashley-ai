@@ -50,9 +50,9 @@
 
 This is the Company OS for **{{company_name}}**. It gives Claude full business context: who we are, how we operate, our tools, our processes, and our rules.
 
-**Owner:** {{your_name}} ({{your_email}})
-**Repo:** {{github_org}}/{{repo_name}} (private)
-**Local path:** {{local_project_path}}
+**Owner:** Aayush Tuli (8xblbcdas9dpcxtttkjwxfiqzw5cat@gmail.com)
+**Repo:** eugeneaayush/ashley-ai (private)
+**Local path:** /Users/eugenekainly/ashley-ai
 
 <!-- WHY: Without this, every session starts from zero.
      With it, Claude has persistent identity. -->
@@ -82,7 +82,7 @@ This is the Company OS for **{{company_name}}**. It gives Claude full business c
 
 | Name | Role | Notes |
 |------|------|-------|
-| {{your_name}} | {{your_role}} | Primary operator. All Claude actions serve this person. |
+| Aayush Tuli | {{your_role}} | Primary operator. All Claude actions serve this person. |
 | {{person_2_name}} | {{person_2_role}} | {{person_2_notes}} |
 | {{person_3_name}} | {{person_3_role}} | {{person_3_notes}} |
 
@@ -144,7 +144,7 @@ This is the Company OS for **{{company_name}}**. It gives Claude full business c
      tool calls before they execute. See /hooks in this starter kit. -->
 
 **When a tool call would be blocked:**
-1. Tell {{your_name}} exactly what you were about to do (recipient, content, target system)
+1. Tell Aayush Tuli exactly what you were about to do (recipient, content, target system)
 2. Ask for explicit approval
 3. Only retry after confirmation
 4. NEVER circumvent the guard (e.g., using Bash to call an API directly instead of the blocked MCP tool)

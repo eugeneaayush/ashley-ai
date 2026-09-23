@@ -109,8 +109,11 @@ cp CLAUDE.md /path/to/your-project/CLAUDE.md
 # 3. Copy skills
 cp -r gtm-skills/ /path/to/your-project/gtm-skills/
 
-# 4. Copy plugin (optional - adds /workflows commands)
-cp -r plugin/ /path/to/your-project/.claude/plugins/company-os/
+# 4. Copy the workflow commands (optional - adds /workflows commands)
+#    Claude Code does not load plugins from .claude/plugins/; project
+#    commands in .claude/commands/<dir>/ become /<dir>:<name>.
+mkdir -p /path/to/your-project/.claude/commands/workflows
+cp plugin/commands/workflows/*.md /path/to/your-project/.claude/commands/workflows/
 
 # 5. Install hooks
 mkdir -p /path/to/your-project/.claude/hooks
