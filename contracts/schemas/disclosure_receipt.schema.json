@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tryashley.ai/contracts/disclosure_receipt.schema.json",
+  "title": "DisclosureReceipt",
+  "description": "Evidence that Ashley identified herself as an AI interviewer and the candidate acknowledged it. Consent to record is required for a receipt to exist; consent to pooled learning is separate and opt-in.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id", "session_id", "disclosed_at", "disclosure_text_version", "candidate_ack",
+    "candidate_ack_at", "consent_record", "consent_pooling", "locale", "jurisdiction_hints"
+  ],
+  "properties": {
+    "receipt_id": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "session_id": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "disclosed_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
+    "disclosure_text_version": {"type": "string", "pattern": "^disclosure-v[0-9]+$"},
+    "candidate_ack": {"enum": ["spoken", "clicked", "typed"]},
+    "candidate_ack_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
+    "consent_record": {"const": true},
+    "consent_pooling": {"type": "boolean"},
+    "consent_pooling_text_version": {"type": "string", "pattern": "^pooling-v[0-9]+$"},
+    "locale": {"type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$"},
+    "jurisdiction_hints": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["US-NYC", "US-IL", "US-MD", "US-CA", "US-CO", "US-TX", "EU", "UK", "OTHER"]}
+    }
+  },
+  "if": {"properties": {"consent_pooling": {"const": true}}, "required": ["consent_pooling"]},
+  "then": {"required": ["consent_pooling_text_version"]}
+}
