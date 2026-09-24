@@ -21,6 +21,7 @@
 | wiki/outbound-playbook.md | Outbound strategy, channels, campaign types | {{date}} |
 | wiki/processes.md | Recurring processes and SOPs | {{date}} |
 | wiki/onboarding.md | New hire ramp plan and resources | {{date}} |
+| wiki/moat-decisions.md | Moat strategy decision, contract locations, rules for future work | 2026-09-24 |
 
 ## Skills
 
