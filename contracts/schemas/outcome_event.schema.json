@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tryashley.ai/contracts/outcome_event.schema.json",
+  "title": "OutcomeEvent",
+  "description": "An inbound fact about what happened after an interview, keyed to the session: application decision, hire, start, retention checkpoints, separation, manager rating. These are the only labels that compound.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "session_id", "event_type", "occurred_at", "source", "payload"],
+  "properties": {
+    "event_id": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "session_id": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "event_type": {
+      "enum": ["application_decision", "hired", "started", "retained_30", "retained_90", "retained_365", "separated", "performance_rating"]
+    },
+    "occurred_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "external_ref"],
+      "properties": {
+        "system": {"enum": ["ashby", "greenhouse", "icims", "bullhorn", "workstream", "fountain", "harri", "hris", "manual", "other"]},
+        "external_ref": {"type": "string", "minLength": 1}
+      }
+    },
+    "payload": {"type": "object"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"event_type": {"const": "application_decision"}}, "required": ["event_type"]},
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["decision"],
+            "properties": {"decision": {"enum": ["advanced", "rejected", "withdrawn"]}}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "separated"}}, "required": ["event_type"]},
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["reason", "tenure_days"],
+            "properties": {
+              "reason": {"enum": ["voluntary", "involuntary", "unknown"]},
+              "tenure_days": {"type": "integer", "minimum": 0}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"event_type": {"const": "performance_rating"}}, "required": ["event_type"]},
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["scale_min", "scale_max", "value", "rated_at"],
+            "properties": {
+              "scale_min": {"type": "number"},
+              "scale_max": {"type": "number"},
+              "value": {"type": "number"},
+              "rated_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"event_type": {"enum": ["hired", "started", "retained_30", "retained_90", "retained_365"]}}, "required": ["event_type"]},
+      "then": {"properties": {"payload": {"type": "object", "additionalProperties": false}}}
+    }
+  ]
+}

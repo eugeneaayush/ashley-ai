@@ -1,0 +1,8 @@
+{
+  "event_id": "44444444-4444-4444-8444-444444444405",
+  "session_id": "22222222-2222-4222-8222-222222222222",
+  "event_type": "performance_rating",
+  "occurred_at": "2027-01-20T12:00:00Z",
+  "source": {"system": "manual", "external_ref": "review-2027-q1"},
+  "payload": {"scale_min": 1, "scale_max": 5, "value": 4, "rated_at": "2027-01-20T12:00:00Z"}
+}

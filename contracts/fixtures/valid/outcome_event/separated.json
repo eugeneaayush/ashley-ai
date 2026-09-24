@@ -1,0 +1,8 @@
+{
+  "event_id": "44444444-4444-4444-8444-444444444404",
+  "session_id": "22222222-2222-4222-8222-222222222222",
+  "event_type": "separated",
+  "occurred_at": "2027-03-06T18:00:00Z",
+  "source": {"system": "hris", "external_ref": "emp_1180"},
+  "payload": {"reason": "voluntary", "tenure_days": 143}
+}
