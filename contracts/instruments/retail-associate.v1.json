@@ -1,0 +1,101 @@
+{
+  "instrument_id": "retail-associate",
+  "role_family": "retail-associate",
+  "version": 1,
+  "status": "active",
+  "rubric_scale": {
+    "min": 1,
+    "max": 5
+  },
+  "questions": [
+    {
+      "question_id": "q01",
+      "text": "Tell me about a time a customer was unhappy. What did they want, and what did you do?",
+      "competency": "customer-recovery",
+      "follow_up_allowed": true,
+      "anchors": {
+        "1": "Cannot describe a specific situation, or blames the customer without describing any action they took.",
+        "3": "Describes a real situation and a reasonable action, but the outcome or what they learned is unclear.",
+        "5": "Describes a specific situation, the action they chose and why, the outcome, and what they would repeat or change."
+      }
+    },
+    {
+      "question_id": "q02",
+      "text": "Walk me through how you would handle a line of five customers when a coworker has just called in sick.",
+      "competency": "prioritization",
+      "follow_up_allowed": true,
+      "anchors": {
+        "1": "No plan beyond working faster, or would leave customers unacknowledged.",
+        "3": "Acknowledges the line and works through it in order, but does not mention asking for help or setting expectations.",
+        "5": "Acknowledges everyone, sets expectations, handles quick requests first, and calls for backup or a manager."
+      }
+    },
+    {
+      "question_id": "q03",
+      "text": "Describe a shift where you had to follow a procedure you disagreed with. What did you do?",
+      "competency": "following-procedures",
+      "follow_up_allowed": true,
+      "anchors": {
+        "1": "Ignored the procedure, or cannot give an example of following one they disliked.",
+        "3": "Followed the procedure but did not raise the concern with anyone.",
+        "5": "Followed the procedure, then raised the concern with the right person and explained why."
+      }
+    },
+    {
+      "question_id": "q04",
+      "text": "What does reliable attendance look like to you, and how do you make sure you get to work on time?",
+      "competency": "reliability",
+      "follow_up_allowed": false,
+      "anchors": {
+        "1": "Gives no concrete habit or plan, or describes attendance as someone else's responsibility.",
+        "3": "Names one habit, such as an alarm or a set route, without a backup for when it fails.",
+        "5": "Names concrete habits and a backup plan, and says how they would tell a manager early if late."
+      }
+    },
+    {
+      "question_id": "q05",
+      "text": "Tell me about a time you helped a teammate finish a task that was not yours.",
+      "competency": "teamwork",
+      "follow_up_allowed": true,
+      "anchors": {
+        "1": "Cannot give an example, or describes doing so only when told to.",
+        "3": "Gives a real example but the reason for helping or the result is vague.",
+        "5": "Gives a specific example, explains why they stepped in, and what it meant for the team or customer."
+      }
+    },
+    {
+      "question_id": "q06",
+      "text": "A customer asks for a discount you are not allowed to give. What do you say to them?",
+      "competency": "policy-under-pressure",
+      "follow_up_allowed": true,
+      "anchors": {
+        "1": "Would give the discount anyway, or would refuse in a way that dismisses the customer.",
+        "3": "Declines politely but offers no alternative and does not involve a manager.",
+        "5": "Declines clearly and kindly, explains what they can offer, and escalates to a manager if the customer insists."
+      }
+    },
+    {
+      "question_id": "q07",
+      "text": "Describe a time you noticed something wrong on the floor, like a spill or a wrong price. What did you do?",
+      "competency": "ownership",
+      "follow_up_allowed": true,
+      "anchors": {
+        "1": "Cannot give an example, or left it for someone else without telling anyone.",
+        "3": "Fixed or reported it, but only after being asked or after some delay.",
+        "5": "Acted immediately, made it safe or correct, and told the right person so it stayed fixed."
+      }
+    },
+    {
+      "question_id": "q08",
+      "text": "Tell me about something you had to learn quickly in a past job or activity. How did you learn it?",
+      "competency": "learning-speed",
+      "follow_up_allowed": true,
+      "anchors": {
+        "1": "Cannot give an example, or waited to be trained without trying anything themselves.",
+        "3": "Gives an example and a method, such as watching a coworker, but does not say how they checked their understanding.",
+        "5": "Gives a specific example, a method, how they checked they had it right, and how fast they became independent."
+      }
+    }
+  ],
+  "content_hash": "sha256:36a5ea8c767ccb9427b90368366a332cb440e160d02e4b04181ae2a73a0d3941"
+}
