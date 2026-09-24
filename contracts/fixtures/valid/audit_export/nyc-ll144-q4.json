@@ -1,0 +1,21 @@
+{
+  "export_id": "55555555-5555-4555-8555-555555555501",
+  "org_id": "org_acme001",
+  "generated_at": "2027-01-05T10:00:00Z",
+  "period": {"from": "2026-10-01", "to": "2026-12-31"},
+  "jurisdiction": "US-NYC-LL144",
+  "instruments": [
+    {"instrument_id": "retail-associate", "version": 1, "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"}
+  ],
+  "selection_rates": [
+    {"category": "sex", "group": "female", "applicants": 120, "selected": 50, "selection_rate": 0.4167, "impact_ratio": 0.9029, "flagged": false},
+    {"category": "sex", "group": "male", "applicants": 130, "selected": 60, "selection_rate": 0.4615, "impact_ratio": 1.0, "flagged": false},
+    {"category": "race_ethnicity", "group": "black", "applicants": 70, "selected": 24, "selection_rate": 0.3429, "impact_ratio": 0.7714, "flagged": true},
+    {"category": "race_ethnicity", "group": "white", "applicants": 90, "selected": 40, "selection_rate": 0.4444, "impact_ratio": 1.0, "flagged": false}
+  ],
+  "deletion_log": [
+    {"session_id": "22222222-2222-4222-8222-222222222223", "requested_at": "2026-11-02T09:15:00Z", "completed_at": "2026-11-02T09:15:42Z", "scope": "all"}
+  ],
+  "disclosure_receipts_count": 250,
+  "notices_sent": 250
+}
