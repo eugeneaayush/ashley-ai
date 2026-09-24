@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tryashley.ai/contracts/interview_session.schema.json",
+  "title": "InterviewSession",
+  "description": "One candidate conversation with Ashley: which instrument version was used, when, under which disclosure receipt, how the recording is retained, and (when completed) the recommendation for a human to review. Candidate identity is pseudonymous here; the ATS holds the person.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "session_id", "org_id", "role_id", "instrument_id", "instrument_version", "candidate_ref",
+    "language", "started_at", "status", "disclosure_receipt_id", "ats", "recording_retention"
+  ],
+  "properties": {
+    "session_id": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "org_id": {"type": "string", "pattern": "^org_[A-Za-z0-9]{6,}$"},
+    "role_id": {"type": "string", "pattern": "^role_[A-Za-z0-9]{6,}$"},
+    "instrument_id": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "instrument_version": {"type": "integer", "minimum": 1},
+    "candidate_ref": {"type": "string", "pattern": "^cand_[A-Za-z0-9]{16,}$"},
+    "language": {"type": "string", "pattern": "^[a-z]{2}$"},
+    "started_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
+    "ended_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
+    "duration_seconds": {"type": "integer", "minimum": 0},
+    "status": {"enum": ["in_progress", "completed", "abandoned"]},
+    "disclosure_receipt_id": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "ats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system"],
+      "properties": {
+        "system": {"enum": ["ashby", "greenhouse", "icims", "bullhorn", "workstream", "fountain", "harri", "other", "none"]},
+        "external_candidate_id": {"type": "string", "minLength": 1},
+        "external_application_id": {"type": "string", "minLength": 1},
+        "stage_at_trigger": {"type": "string", "minLength": 1}
+      }
+    },
+    "recording_retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "deleted_at", "deletion_request_id"],
+      "properties": {
+        "policy": {"enum": ["customer-default", "aivia-30-day"]},
+        "deleted_at": {"type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
+        "deletion_request_id": {"type": ["string", "null"], "minLength": 1}
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recommendation", "summary", "overall_score", "scoring_prompt_version", "generated_at"],
+      "properties": {
+        "recommendation": {"enum": ["advance", "review", "do-not-advance"]},
+        "summary": {"type": "string", "minLength": 20},
+        "overall_score": {"type": "number", "minimum": 1, "maximum": 5},
+        "scoring_prompt_version": {"type": "string", "pattern": "^scoring-v[0-9]+$"},
+        "generated_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "completed"}}, "required": ["status"]},
+      "then": {"required": ["ended_at", "duration_seconds", "result"]}
+    },
+    {
+      "if": {"properties": {"status": {"const": "abandoned"}}, "required": ["status"]},
+      "then": {"not": {"required": ["result"]}}
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "session_id": "22222222-2222-4222-8222-222222222222",
+  "org_id": "org_acme001",
+  "role_id": "role_retail01",
+  "instrument_id": "retail-associate",
+  "instrument_version": 1,
+  "candidate_ref": "cand_9f8e7d6c5b4a3210",
+  "language": "en",
+  "started_at": "2026-10-06T14:02:30Z",
+  "ended_at": "2026-10-06T14:21:05Z",
+  "duration_seconds": 1115,
+  "status": "completed",
+  "disclosure_receipt_id": "11111111-1111-4111-8111-111111111111",
+  "ats": {
+    "system": "ashby",
+    "external_candidate_id": "c_48213",
+    "external_application_id": "a_90871",
+    "stage_at_trigger": "Application Review"
+  },
+  "recording_retention": {"policy": "aivia-30-day", "deleted_at": null, "deletion_request_id": null},
+  "result": {
+    "recommendation": "advance",
+    "summary": "Consistent, specific examples for customer recovery and ownership; weaker on prioritization under pressure.",
+    "overall_score": 3.9,
+    "scoring_prompt_version": "scoring-v1",
+    "generated_at": "2026-10-06T14:21:40Z"
+  }
+}
