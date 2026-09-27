@@ -29,6 +29,23 @@ def test_verify_rejects_missing_prefix():
     assert verify(SECRET, message, sign(SECRET, message)[len(PREFIX):]) is False
 
 
+def test_verify_rejects_non_ascii_header_without_raising():
+    message = b"1759760000.{}"
+    assert verify(SECRET, message, PREFIX + "é" * 64) is False
+
+
+def test_verify_rejects_signature_from_other_secret():
+    message = b"1759760000." + b'{"event_id":"x"}'
+    assert verify(b"whsec_other_9876543210", message, sign(SECRET, message)) is False
+
+
+def test_verify_rejects_uppercase_hex():
+    message = b"1759760000." + b'{"event_id":"x"}'
+    signature = sign(SECRET, message)
+    uppercased = signature[:len(PREFIX)] + signature[len(PREFIX):].upper()
+    assert verify(SECRET, message, uppercased) is False
+
+
 @pytest.mark.parametrize("name", ["application_decision", "hired", "retained_90", "separated", "performance_rating"])
 def test_valid_event_fixtures(name):
     assert errors_for("outcome_event", load_json(VALID / f"{name}.json")) == []

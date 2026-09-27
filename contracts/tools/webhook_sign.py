@@ -16,6 +16,10 @@ def sign(secret: bytes, message: bytes) -> str:
 
 
 def verify(secret: bytes, message: bytes, header_value: str) -> bool:
+    if not isinstance(header_value, str):
+        return False
+    if not header_value.isascii():
+        return False
     if not header_value.startswith(PREFIX):
         return False
     return hmac.compare_digest(sign(secret, message), header_value)

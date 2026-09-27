@@ -32,7 +32,11 @@ def main(argv: list[str]) -> int:
     if len(argv) != 3:
         print("usage: validate.py <schema-name> <document.json>", file=sys.stderr)
         return 2
-    errors = errors_for(argv[1], load_json(Path(argv[2])))
+    try:
+        errors = errors_for(argv[1], load_json(Path(argv[2])))
+    except (OSError, json.JSONDecodeError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
     for message in errors:
         print(message)
     print("VALID" if not errors else f"INVALID ({len(errors)} errors)")

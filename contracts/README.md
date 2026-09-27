@@ -23,14 +23,39 @@ The product implements against these; this repository only defines and tests the
 - Instruments are immutable once `active`. Any change to question or anchor text is a new
   `version` with a new `content_hash` (computed by `tools/instrument_hash.py`, over every field
   except `content_hash` and `status`). `status` may change without a new version.
-- Scores read the transcript only. No schema may carry a property about expression, emotion,
-  face, appearance, accent, gaze, or posture; `tests/test_words_only_guard.py` enforces this.
+- Scores read the transcript only. No schema may carry a name about expression, emotion, face,
+  appearance, accent, gaze, posture, smile, tone, prosody, pitch, eyes, or affect;
+  `tests/test_words_only_guard.py` enforces this by tokenizing: every property name and every
+  string value inside `enum` and `const` in every schema is split into lowercase word tokens
+  (on `_`, `-`, `.`, whitespace, and camelCase boundaries) and flagged when any token is
+  forbidden, so `face_score` and `faceScore` are caught while `interface_id` and
+  `pitchfork_count` pass.
 - Consent to record is required for a session to exist. Consent to pooled learning is a separate
   boolean on the disclosure receipt; when true, the pooling text version shown must be named.
+- A receipt with `consent_pooling` false may still record the pooling text version it showed, as
+  evidence of what was declined; only the true direction is enforced by the schema.
+- The optional `pooling_opted_in_receipts` count on audit exports is how the export evidences
+  that pooled learning used only opted-in rows.
 - Deletion propagates to derived features and every completed deletion appears in the export
   pack's `deletion_log`.
 - Schemas evolve compatibly (new optional fields only). A breaking change is a new file with a
   new `$id` ending in `/v2/...`; the old file stays until no producer emits it.
+
+## Rules JSON Schema cannot express
+
+- A score row's `aggregate.score` and `disagreement` equal the panel median and the panel max
+  minus min, and `transcript_span.end_ms >= start_ms` (`tools/panel.py` `consistency_errors`).
+- A panel has 3 to 7 ratings (schema and `tools/panel.py`).
+- Question ids are unique within an instrument (instrument authors).
+- The canonical instrument form for hashing uses integers for integer values and NFC-normalized
+  text (instrument authors).
+- A performance rating has `scale_min < scale_max` and `value` within the scale (senders of
+  outcome events).
+- `selected <= applicants`, `period.from <= period.to`, and deletion `completed_at >=
+  requested_at` (the export generator).
+- The export generator copies each instrument's live `content_hash` into the export (the
+  fixture's all-zero hash is illustrative).
+- `flagged` uses the unrounded impact ratio (`tools/selection_rates.py`).
 
 ## Validate a document
 

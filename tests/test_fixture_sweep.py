@@ -1,5 +1,6 @@
 import pytest
 
+from contracts.tools.panel import consistency_errors
 from contracts.tools.validate import FIXTURES, INSTRUMENTS, SCHEMAS, errors_for, load_json
 
 
@@ -24,6 +25,11 @@ def test_valid_fixture_validates(schema_name, path):
 @pytest.mark.parametrize("schema_name,path", INVALID, ids=[f"{name}/{path.name}" for name, path in INVALID])
 def test_invalid_fixture_fails(schema_name, path):
     assert errors_for(schema_name, load_json(path)) != []
+
+
+def test_valid_score_row_fixtures_are_consistent():
+    for path in sorted((FIXTURES / "valid" / "score_row").glob("*.json")):
+        assert consistency_errors(load_json(path)) == [], path.name
 
 
 def test_every_instrument_file_validates():

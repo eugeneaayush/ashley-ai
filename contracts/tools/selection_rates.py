@@ -2,6 +2,9 @@
 
 Input rows: one per candidate per category, {"category": str, "group": str, "selected": bool}.
 "selected" means an application_decision event with decision == "advanced".
+
+`flagged` is decided on the unrounded ratio (the conservative four-fifths reading);
+`impact_ratio` is rounded to 4 places for display, so a row can show `0.8` and still be flagged.
 """
 from __future__ import annotations
 
@@ -11,6 +14,12 @@ FOUR_FIFTHS = 0.8
 def impact_ratios(rows: list[dict]) -> list[dict]:
     counts: dict[tuple[str, str], list[int]] = {}
     for row in rows:
+        if not isinstance(row["selected"], bool):
+            raise ValueError(f"selected must be a bool, got {row['selected']!r}")
+        if not isinstance(row["category"], str) or not row["category"]:
+            raise ValueError(f"category must be a non-empty str, got {row['category']!r}")
+        if not isinstance(row["group"], str) or not row["group"]:
+            raise ValueError(f"group must be a non-empty str, got {row['group']!r}")
         key = (row["category"], row["group"])
         applicants_selected = counts.setdefault(key, [0, 0])
         applicants_selected[0] += 1

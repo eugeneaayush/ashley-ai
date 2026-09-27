@@ -15,8 +15,8 @@ enabled. Everything in the moat design is built to make that customer expensive 
   procurement cycle.
 - Outcomes: willing to send hire and 90-day retention events back under the data-processing
   agreement (customer owns its data; pooling stays opt-in).
-- Jurisdiction: US locations where the audit exports apply (New York City, Illinois, California,
-  Texas, or states with no extra AI-hiring rule).
+- Jurisdiction: US locations. Audit export packs currently cover New York City, Illinois, and
+  California; locations elsewhere in the US qualify but need no jurisdiction-specific pack yet.
 
 ## Disqualifiers
 

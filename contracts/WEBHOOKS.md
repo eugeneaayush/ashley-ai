@@ -11,9 +11,9 @@ onboarding; they are not part of this contract.
   - `Content-Type: application/json`
   - `X-Ashley-Timestamp`: Unix seconds when the request was signed.
   - `X-Ashley-Event-Id`: the body's `event_id`, repeated for log correlation.
-  - `X-Ashley-Signature`: `sha256=<hex>` where hex is HMAC-SHA256 over the message
-    `"{X-Ashley-Timestamp}." + raw body bytes`, keyed with the organization's secret.
-    Reference implementation: `tools/webhook_sign.py`.
+  - `X-Ashley-Signature`: `sha256=<hex>` where hex is the lowercase HMAC-SHA256 hex digest over
+    the message `"{X-Ashley-Timestamp}." + raw body bytes`, keyed with the organization's secret;
+    uppercase hex is rejected. Reference implementation: `tools/webhook_sign.py`.
 
 ## Responses
 
@@ -22,7 +22,7 @@ onboarding; they are not part of this contract.
 | 202 | Accepted and stored. |
 | 200 | Duplicate `event_id` already stored; body ignored (idempotent). |
 | 400 | Body fails the schema; response lists validation messages. |
-| 401 | Signature missing or invalid, or timestamp older than 300 seconds. |
+| 401 | Signature header missing, malformed, non-ASCII, or wrong, or timestamp older than 300 seconds. |
 | 404 | `session_id` unknown to this organization. |
 
 ## Delivery rules for senders

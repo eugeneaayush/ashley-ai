@@ -1,8 +1,20 @@
+import pytest
+
 from contracts.tools.selection_rates import FOUR_FIFTHS, impact_ratios
 
 
 def _rows(category, group, applicants, selected):
     return [{"category": category, "group": group, "selected": index < selected} for index in range(applicants)]
+
+
+def test_selected_must_be_a_bool():
+    with pytest.raises(ValueError):
+        impact_ratios([{"category": "sex", "group": "A", "selected": "no"}])
+
+
+def test_group_must_be_a_non_empty_str():
+    with pytest.raises(ValueError):
+        impact_ratios([{"category": "sex", "group": "", "selected": True}])
 
 
 def test_four_fifths_threshold():
@@ -33,3 +45,11 @@ def test_no_selections_at_all_flags_nobody():
 
 def test_empty_input():
     assert impact_ratios([]) == []
+
+
+def test_boundary_ratio_shows_0_8_and_still_flags():
+    result = impact_ratios(_rows("sex", "A", 10, 10) + _rows("sex", "B", 100000, 79998))
+    by_group = {row["group"]: row for row in result}
+    assert by_group["A"]["selection_rate"] == 1.0
+    assert by_group["B"]["impact_ratio"] == 0.8
+    assert by_group["B"]["flagged"] is True
