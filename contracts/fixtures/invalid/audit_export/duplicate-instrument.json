@@ -5,6 +5,7 @@
   "period": {"from": "2026-10-01", "to": "2026-12-31"},
   "jurisdiction": "US-NYC-LL144",
   "instruments": [
+    {"instrument_id": "retail-associate", "version": 1, "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"},
     {"instrument_id": "retail-associate", "version": 1, "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"}
   ],
   "selection_rates": [

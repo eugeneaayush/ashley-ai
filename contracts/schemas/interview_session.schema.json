@@ -31,7 +31,17 @@
         "external_candidate_id": {"type": "string", "minLength": 1},
         "external_application_id": {"type": "string", "minLength": 1},
         "stage_at_trigger": {"type": "string", "minLength": 1}
-      }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"system": {"const": "none"}}, "required": ["system"]},
+          "then": {"not": {"anyOf": [
+            {"required": ["external_candidate_id"]},
+            {"required": ["external_application_id"]},
+            {"required": ["stage_at_trigger"]}
+          ]}}
+        }
+      ]
     },
     "recording_retention": {
       "type": "object",
@@ -41,7 +51,13 @@
         "policy": {"enum": ["customer-default", "aivia-30-day"]},
         "deleted_at": {"type": ["string", "null"], "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$"},
         "deletion_request_id": {"type": ["string", "null"], "minLength": 1}
-      }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"deleted_at": {"type": "string"}}, "required": ["deleted_at"]},
+          "then": {"properties": {"deletion_request_id": {"type": "string"}}}
+        }
+      ]
     },
     "result": {
       "type": "object",
@@ -64,6 +80,10 @@
     {
       "if": {"properties": {"status": {"const": "abandoned"}}, "required": ["status"]},
       "then": {"not": {"required": ["result"]}}
+    },
+    {
+      "if": {"properties": {"status": {"const": "in_progress"}}, "required": ["status"]},
+      "then": {"not": {"anyOf": [{"required": ["result"]}, {"required": ["ended_at"]}, {"required": ["duration_seconds"]}]}}
     }
   ]
 }

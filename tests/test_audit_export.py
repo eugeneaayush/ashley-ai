@@ -28,3 +28,15 @@ def test_jurisdiction_is_constrained():
     doc = load_json(VALID / "nyc-ll144-q4.json")
     doc["jurisdiction"] = "US-FL"
     assert any("is not one of" in message for message in errors_for("audit_export", doc))
+
+
+def test_instruments_must_be_unique():
+    errors = errors_for("audit_export", load_json(INVALID / "duplicate-instrument.json"))
+    assert any("has non-unique elements" in message for message in errors), errors
+
+
+def test_pooling_receipt_count_cannot_be_negative():
+    doc = load_json(VALID / "nyc-ll144-q4.json")
+    doc["pooling_opted_in_receipts"] = -1
+    errors = errors_for("audit_export", doc)
+    assert any("is less than the minimum of 0" in message for message in errors), errors

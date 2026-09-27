@@ -34,3 +34,39 @@ def test_recording_retention_policy_is_constrained():
     doc = load_json(VALID / "completed.json")
     doc["recording_retention"]["policy"] = "forever"
     assert any("is not one of" in message for message in errors_for("interview_session", doc))
+
+
+def test_in_progress_session_validates_without_end_fields():
+    doc = load_json(VALID / "in_progress.json")
+    assert doc["status"] == "in_progress"
+    for key in ("result", "ended_at", "duration_seconds"):
+        assert key not in doc
+    assert errors_for("interview_session", doc) == []
+
+
+def test_in_progress_session_must_not_carry_result():
+    errors = errors_for("interview_session", load_json(INVALID / "in-progress-with-result.json"))
+    assert any("should not be valid under" in message for message in errors), errors
+
+
+def test_deletion_timestamp_requires_request_id():
+    errors = errors_for("interview_session", load_json(INVALID / "deleted-without-request.json"))
+    assert any("is not of type 'string'" in message for message in errors), errors
+
+
+def test_pending_deletion_with_request_id_stays_valid():
+    doc = load_json(VALID / "completed.json")
+    doc["recording_retention"]["deletion_request_id"] = "dr_7712"
+    assert errors_for("interview_session", doc) == []
+
+
+def test_ats_none_must_not_carry_external_ids():
+    errors = errors_for("interview_session", load_json(INVALID / "none-system-with-ids.json"))
+    assert any("should not be valid under" in message for message in errors), errors
+
+
+def test_completed_session_requires_ended_at():
+    doc = load_json(VALID / "completed.json")
+    del doc["ended_at"]
+    errors = errors_for("interview_session", doc)
+    assert "'ended_at' is a required property" in errors, errors
