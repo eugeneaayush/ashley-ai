@@ -1,147 +1,84 @@
-# CLAUDE.md -- {{company_name}} Company OS
+# CLAUDE.md -- Helen Labs (Ashley.Ai) Company OS
 
-<!-- THE CLAUDE.MD BLUEPRINT TEMPLATE
-     This is the master instruction file for Claude Code. When Claude
-     opens your project, this is the first thing it reads. Think of it
-     as the "operating system" for your AI assistant.
-
-     Keep this file under 200 lines. Move detailed reference material
-     to .claude/rules/ or skills.
-
-     HOW TO USE:
-     1. Replace every {{placeholder}} with your real values
-     2. Delete sections you don't need yet (add them later)
-     3. Save as CLAUDE.md in your project root
-     4. Open in Claude Code -- it loads automatically
-     5. Or run /init in Claude Code to auto-generate a starter, then
-        merge in sections from this template
-
-     Created by Dan Rosenthal (workflows.io) -->
-
-
-## Setup Mode (READ THIS FIRST)
-
-<!-- INSTRUCTIONS FOR CLAUDE:
-     When a user first opens this project, this file will be full of
-     {{placeholders}}. DO NOT wait for them to fill these in manually.
-     Instead, be interactive:
-
-     1. When the user says "help me set up" or "walk me through this,"
-        interview them section by section. Ask about their company,
-        tools, team, and processes. Fill in the placeholders based on
-        their answers.
-     2. Adapt the structure to their business. If they are a SaaS company,
-        the "Products / Services" section looks different than for a
-        services company. Rename sections, add/remove rows, adjust
-        examples to fit.
-     3. After filling a section, read it back and ask if it looks right
-        before moving on.
-     4. Skip sections they aren't ready for. Mark them with
-        "TODO: fill in later" so they can come back.
-     5. When setup is done, suggest creating their first custom skill
-        based on their most repeated task.
-
-     The goal: the user should be able to go from clone to working
-     Company OS in a single conversation, without manually editing
-     any markdown. -->
-
+<!-- Filled in from the owner interview on 2026-09-27. Items still open are marked
+     "TODO: fill in later". Keep this file the hub: move detail into blueprint/ files. -->
 
 ## What This Is
 
-This is the Company OS for **{{company_name}}**. It gives Claude full business context: who we are, how we operate, our tools, our processes, and our rules.
+This is the Company OS for **Helen Labs, Inc.**, maker of **Ashley.Ai** (https://www.tryashley.ai). It gives Claude full business context: who we are, how we operate, our tools, our processes, and our rules.
 
 **Owner:** Aayush Tuli (8xblbcdas9dpcxtttkjwxfiqzw5cat@gmail.com)
 **Repo:** eugeneaayush/ashley-ai (private)
 **Local path:** /Users/eugenekainly/ashley-ai
-
-<!-- WHY: Without this, every session starts from zero.
-     With it, Claude has persistent identity. -->
 
 ---
 
 
 ## Company Identity
 
-**Company:** {{company_name}}
-**What we do:** {{one_line_description}}
-**Industry:** {{industry}}
-**Stage:** {{company_stage}} <!-- e.g. Pre-revenue, Seed, Series A, $2M ARR, etc. -->
-**Team size:** {{team_size}}
+**Company:** Helen Labs, Inc. (product: Ashley.Ai)
+**What we do:** The AI interviewer for high-volume hiring: a live, photoreal interviewer that gives every applicant a real first-round conversation, scored on the employer's rubric.
+**Industry:** HR tech, AI recruiting software
+**Stage:** Pre-revenue, running pilots (U.S. Air Force Academy; University of Florida Warrington College of Business)
+**Team size:** 3 co-founders (one business, two technical)
 
 ### Mission
-{{company_mission}}
+Give every applicant a real conversation, and help every company hire the best person rather than the best resume.
 
 ### Core Values
-<!-- These shape HOW Claude communicates and makes decisions on your behalf -->
-- {{value_1}}
-- {{value_2}}
-- {{value_3}}
+- **Candidates always know.** Ashley discloses she is an AI. No one is evaluated by AI without knowing it.
+- **Humans decide.** Ashley recommends; a person makes every hiring decision. No candidate is auto-rejected.
+- **Judge the words.** Score what people say against the rubric, never appearance, accent, or background.
+- **Nobody gets ghosted.** Every applicant gets a real conversation and a timely outcome.
 
 ### Key People
-<!-- Claude uses this to understand org context, route decisions, and personalize communication -->
 
 | Name | Role | Notes |
 |------|------|-------|
-| Aayush Tuli | {{your_role}} | Primary operator. All Claude actions serve this person. |
-| {{person_2_name}} | {{person_2_role}} | {{person_2_notes}} |
-| {{person_3_name}} | {{person_3_role}} | {{person_3_notes}} |
-
-<!-- WHY: A 5-person SaaS startup gets different outputs than a 200-person
-     services company. Team context prevents Claude from suggesting you
-     "ask your marketing team" when you ARE the marketing team. -->
+| Aayush Tuli | CEO & co-founder (business) | Primary operator. All Claude actions serve this person. |
+| TODO: fill in later | Technical co-founder | Engineering: in-house avatar models and real-time rendering stack. TODO: name and focus. |
+| TODO: fill in later | Technical co-founder | Engineering: in-house avatar models and real-time rendering stack. TODO: name and focus. |
 
 ---
 
 
 ## Products / Services / What We Do
 
-<!-- List your core offerings, products, or business functions.
-     Claude uses this to understand scope and generate relevant work. -->
+Prices and features from tryashley.ai, checked 2026-09-23. Strategy and positioning: `blueprint/wiki/moat-decisions.md`.
 
-### {{product_or_service_1}}
-{{brief_description_1}}
+### Ashley AI Interviewer
+The core product. Live, photoreal video interviews rendered in real time by our own stack, not a rented avatar API. Adaptive, role-specific follow-up questions in 11 languages, with live captions. Scores the transcript against the employer's rubric and keeps transcripts and recordings for every interview. Ashley introduces herself as an AI at the start.
 
-### {{product_or_service_2}}
-{{brief_description_2}}
+### Enterprise interviewer
+Custom-branded interviewer (avatar, voice, and tone), compliance pack (audit exports and notice workflows), SSO, DPA and security review, dedicated capacity with an SLA, and native ATS integration support.
 
-### {{product_or_service_3}}
-{{brief_description_3}}
+### Self-serve plans
+Pay per completed interview, not per seat. Starter is free for 10 interviews. Pay as you go is $6 per interview. Growth is $499/month for 100 interviews ($5.50 overage). Scale is $1,499/month for 400 interviews ($5.00 overage). Month to month; early-access rates are kept for 12 months.
 
-<!-- EXAMPLES:
-     SaaS: "Core Platform", "Enterprise Add-on", "API / Integrations"
-     Services: "Strategy Consulting", "Implementation", "Managed Services"
-     Marketplace: "Buyer Experience", "Seller Tools", "Payments" -->
+### Hiring team dashboard
+Candidate job dashboard, per-interview analytics, score reports with CSV export, new-candidate email digests, and webhooks into the customer's stack (rolling out).
 
 ---
 
 
 ## Behavior Rules
 
-<!-- This is the personality layer. It controls Claude's tone,
-     initiative level, and communication style across every interaction. -->
-
-- **Tone:** {{communication_style}}
-  <!-- e.g. "Direct, concise, no filler. Professional but not corporate." -->
+- **Tone:** Direct, concise, no filler. Professional but not corporate.
 - **Initiative:** Take action within safe boundaries. Ask only when genuinely stuck or when the action is irreversible.
 - **No sycophantic filler.** Skip "Great question!" and "Absolutely!" -- just do the work.
 - **Session startup:** At the start of every session, mentally load context from brain files before taking action.
 - **Writing rules:**
-  - {{writing_rule_1}} <!-- e.g. "No em dashes. Use commas, periods, or parentheses." -->
-  - {{writing_rule_2}} <!-- e.g. "Avoid: leverage, utilize, streamline, comprehensive, robust" -->
-  - {{writing_rule_3}} <!-- e.g. "Short sentences. Active voice. Write like a human." -->
+  - No em dashes. Use commas, periods, or parentheses.
+  - Avoid: leverage, utilize, streamline, comprehensive, robust, revolutionary.
+  - Short sentences. Active voice. Write like a human.
 - **When updating context:** Always evaluate whether a change should update brain files, and commit changes after updating.
-
-<!-- WHY: Without these, Claude defaults to generic assistant mode.
-     These rules make it YOUR assistant, not a random chatbot. -->
 
 ---
 
 
 ## Safety Guard (CRITICAL)
 
-<!-- Actions Claude must NEVER take without explicit approval.
-     IMPLEMENTATION: Claude Code supports PreToolUse hooks that block
-     tool calls before they execute. See /hooks in this starter kit. -->
+Enforced by the PreToolUse hook `.claude/hooks/safety-guard.sh`, wired in `.claude/settings.json`.
 
 **When a tool call would be blocked:**
 1. Tell Aayush Tuli exactly what you were about to do (recipient, content, target system)
@@ -151,110 +88,74 @@ This is the Company OS for **{{company_name}}**. It gives Claude full business c
 
 ### Blocked Categories
 
-<!-- Uncomment and customize the categories that apply to your business.
-     Add new categories as you connect new tools. -->
-
-1. **External messaging** -- Never send emails, Slack messages, or DMs without approval
-   <!-- Covers: Gmail drafts/sends, Slack post/reply, LinkedIn messages, etc. -->
+1. **External messaging** -- Never send emails, Slack messages, LinkedIn messages, or DMs, or activate outbound sequences, without approval
+   <!-- Covers: Gmail sends and drafts, Slack posts, LinkedIn messages, Apollo sequences -->
 
 2. **Financial operations** -- Never create invoices, process payments, or modify billing
-   <!-- Covers: Stripe, QuickBooks, payment links, subscription changes -->
 
-3. **Destructive deletes** -- Never delete records, campaigns, contacts, or accounts
-   <!-- Covers: CRM record deletion, campaign deletion, list deletion -->
+3. **Destructive deletes** -- Never delete records, campaigns, contacts, issues, pages, or accounts
+   <!-- Covers: HubSpot and Apollo records, Linear issues, Notion pages -->
 
 4. **Database mutations** -- Never run raw SQL, apply migrations, or modify schemas
-   <!-- Covers: Supabase, Postgres, any direct DB access -->
+   <!-- Covers: Supabase, any direct database access -->
 
 5. **Git push / deploy** -- Never push to remote, merge PRs, or trigger deployments
-   <!-- Covers: git push, gh pr merge, deploy commands -->
+   <!-- Covers: git push, gh pr merge, Cloudflare deploys, RunPod endpoint changes -->
 
 6. **Calendar mutations** -- Never create, delete, or modify calendar events
-   <!-- Covers: Google Calendar, Calendly, any scheduling tool -->
-
-<!-- WHY: Claude can take real actions -- send emails, post to Slack,
-     modify databases, push code. Without guardrails, a misunderstood
-     instruction could message a client or delete production data. -->
+   <!-- Covers: Google Calendar, Calendly -->
 
 ---
 
 
 ## Tool Ecosystem
 
-<!-- Declare every tool Claude has access to and how they connect.
-     This is the "wiring diagram" of your business.
-     Claude uses this to understand what's possible and route actions correctly. -->
-
 ### Core Tools
 
 | Tool | Purpose | How We Use It |
 |------|---------|---------------|
-| {{tool_1}} | {{purpose_1}} | {{usage_1}} |
-| {{tool_2}} | {{purpose_2}} | {{usage_2}} |
-| {{tool_3}} | {{purpose_3}} | {{usage_3}} |
-| {{tool_4}} | {{purpose_4}} | {{usage_4}} |
-
-<!-- EXAMPLES:
-     SaaS: GitHub (code), Linear (PM), Vercel (hosting), PostHog (analytics), Stripe (billing)
-     Sales-led: HubSpot (CRM), Outreach (sequences), Gong (calls), Slack (comms)
-     Ops-heavy: Notion (docs), n8n (automation), Airtable (data), Zapier (integrations) -->
+| Google Workspace | Email, calendar, docs | Gmail, Google Calendar, and Drive for the founders |
+| Slack | Team chat | Founder coordination and deal alerts |
+| Notion | Docs and wiki | Internal notes and planning |
+| Linear | Issue tracking | Product and engineering roadmap |
+| LinkedIn Sales Navigator | Prospecting | Find hiring leaders at high-volume employers |
+| Apollo | Enrichment and sequences | Enrich leads and run outbound sequences |
+| HubSpot | CRM | Pipeline, pilots, and deals |
+| Calendly | Scheduling | Demo booking |
+| GitHub | Code | Repositories, pull requests, issues |
+| Cloudflare | Web and edge | tryashley.ai and networking (Cloudflare for Startups) |
+| RunPod | GPU compute | Real-time rendering and model inference |
+| Supabase | Database and auth | Application data with row-level security |
 
 ### How Tools Connect (Data Flow)
 
-<!-- Describe the key data flows between your tools.
-     This helps Claude understand cause and effect across systems. -->
-
 ```
-{{source_tool}} -> {{middle_tool}} -> {{destination_tool}}
+LinkedIn Sales Navigator (find hiring leaders) -> Apollo (enrich, sequence) -> HubSpot (track deals) -> Slack (alerts)
+Customer ATS (stage change) -> Ashley interview -> score write-back to the ATS; outcome webhooks -> Ashley   (planned: contracts/WEBHOOKS.md)
 ```
-
-<!-- EXAMPLE:
-     Clay (enrich) -> Instantly (send campaigns) -> HubSpot (track replies)
-     Tally (form submission) -> n8n (automation) -> Slack (notification) + Airtable (record)
-     GitHub (PR merged) -> Vercel (deploy) -> Slack (notification) -->
 
 ---
 
 
 ## MCP Server Registry
 
-<!-- MCP (Model Context Protocol) servers give Claude direct access to your tools.
-     This registry tells Claude what's connected and what each server does.
-
-     TYPE GUIDE:
-     - stdio: Runs locally on your machine (e.g., GitHub CLI, local tools)
-     - HTTP: Connects to a remote API endpoint
-     - HTTP/OAuth: Remote API with OAuth authentication
-
-     SETUP: MCP servers are configured in your Claude Code settings.
-     See https://docs.anthropic.com/en/docs/claude-code for setup instructions. -->
+Connectors available in Claude desktop sessions as of 2026-09-27. Claude.ai connectors may be absent in CLI or headless sessions.
 
 | MCP Server | Type | Purpose |
 |------------|------|---------|
 | github | stdio | Repository management, PRs, issues, code search |
-| {{mcp_server_2}} | {{type_2}} | {{purpose_2}} |
-| {{mcp_server_3}} | {{type_3}} | {{purpose_3}} |
-| {{mcp_server_4}} | {{type_4}} | {{purpose_4}} |
+| Gmail | HTTP/OAuth (claude.ai connector) | Read and draft email; sending is blocked by the safety guard |
+| Google Calendar | HTTP/OAuth (claude.ai connector) | Read availability; changes are blocked by the safety guard |
+| Google Drive | HTTP/OAuth (claude.ai connector) | Search and read shared docs |
+| Apollo | HTTP/OAuth (claude.ai connector) | Prospect search, enrichment, sequences |
+| Linear | HTTP/OAuth (claude.ai connector) | Issues, projects, and cycles |
 
-<!-- COMMON SERVERS: slack, notion, airtable, n8n, firecrawl, exa,
-     supabase, stripe, browserbase, apollo, pinecone.
-     Full list: https://github.com/modelcontextprotocol/servers -->
-
-<!-- WHY: Claude can only use tools it knows about. This registry acts
-     as a capability menu. Without it, Claude guesses or asks. -->
+Not yet connected: HubSpot (needs authorization), Slack, Notion, Supabase, Cloudflare, Calendly.
 
 ---
 
 
 ## Skill Routing Table
-
-<!-- Skills are reusable instruction sets that tell Claude HOW to do
-     specific tasks. Each skill is a SKILL.md file that contains
-     step-by-step instructions, quality criteria, and examples.
-
-     This table maps user intents to the right skill file.
-     When you say "write a cold email," Claude looks up the skill
-     and follows its specific playbook instead of winging it. -->
 
 | User Intent | Skill File | Description |
 |-------------|-----------|-------------|
@@ -263,87 +164,55 @@ This is the Company OS for **{{company_name}}**. It gives Claude full business c
 | "Build an ICP" | gtm-skills/icp-modeller.md | Ideal Customer Profile with scoring criteria |
 | "Design our GTM motion" | gtm-skills/gtm-strategist.md | Go-to-market strategy and channel planning |
 | "Prep me for a call" | gtm-skills/discovery-prep.md | Pre-call research briefs and conversation starters |
-| {{intent_6}} | {{skill_path_6}} | {{skill_description_6}} |
+| "Follow up with a pilot" | gtm-skills/pilot-follow-up.md (TODO: create) | Updates and next steps for pilot customers such as USAFA and UF |
 
-<!-- HOW TO CREATE A SKILL:
-     1. Create a .md file in gtm-skills/ (e.g., gtm-skills/my-new-skill.md)
-     2. Include: trigger conditions, steps, quality criteria, examples
-     3. Add it to this routing table so Claude knows when to use it
-     4. Or just ask Claude: "Help me create a skill for [your task]"
-
-     WHY: Without skills, Claude reinvents its approach every session.
-     With skills, it follows your proven playbooks consistently. -->
+Workflow commands (installed in `.claude/commands/workflows/`): `/workflows:plan`, `/workflows:work`, `/workflows:review`, `/workflows:swarm`, `/workflows:brainstorm`, `/workflows:compound`.
 
 ---
 
 
 ## Brain File Structure
 
-<!-- This is the map of all context files in your Company OS.
-     Claude reads this to know WHERE information lives.
-
-     PRINCIPLE: Claude's context window is large but not infinite.
-     Instead of putting everything in CLAUDE.md, spread context
-     across focused files. CLAUDE.md points to them. Claude reads
-     what it needs, when it needs it. -->
-
-Keep it simple. Start with CLAUDE.md and company/overview.md. Add more as you go. You can always create new folders, but we recommend this structure as a starting point.
+Start with CLAUDE.md and `blueprint/company/overview.md`. The files under `blueprint/company/` and `blueprint/wiki/` are still templates except `moat-decisions.md`; fill them in as you go.
 
 ```
-company-os/
-├── CLAUDE.md              # This file (the hub)
-├── INDEX.md               # Content catalog
-├── company/               # Core context + brand + guides
-│   ├── overview.md
-│   ├── team.md
-│   ├── accounts.md
-│   ├── gtm-stack.md
-│   ├── voice.md
-│   └── design-system.md
-├── wiki/                  # Reference, playbooks, SOPs, deep-dives
-├── gtm-skills/            # AI skill definitions (5 starters included)
-├── archive/               # Completed projects, historical docs
-└── raw/                   # Input sources (transcripts, exports)
+ashley-ai/
+├── CLAUDE.md                  # This file (the hub)
+├── blueprint/
+│   ├── INDEX.md               # Content catalog
+│   ├── company/               # overview, team, accounts, gtm-stack, voice, design-system (TODO: fill in later)
+│   ├── wiki/                  # moat-decisions (filled), outbound-playbook, processes, onboarding
+│   ├── skills/, archive/, raw/ # guides for skills, finished work, raw inputs
+│   └── hooks/                 # source copies of the installed hooks
+├── gtm-skills/                # AI skill definitions (5 starters)
+├── contracts/                 # Interview data contracts: JSON Schemas, fixtures, reference tools
+├── docs/                      # moat/ working docs; superpowers/ specs and plans
+├── plugin/                    # Source of the /workflows commands
+├── tests/                     # pytest suite for contracts/ and docs
+└── .claude/                   # settings.json, hooks/, commands/workflows/
 ```
-
-<!-- TIPS: One topic per file. Use ## headings for scannability.
-     Keep files under 500 lines.
-     WHY: Claude uses this as a directory to find context on demand. -->
 
 ### Importing Other Files
 
 You can reference other files directly in CLAUDE.md using the `@path/to/file` syntax. Claude will read the referenced file when it loads this one. Example:
 
 ```
-@company/overview.md
-@company/voice.md
+@blueprint/company/overview.md
+@blueprint/company/voice.md
 ```
 
 This keeps CLAUDE.md lean while still pulling in key context at load time.
 
 ### Path-Specific Rules
 
-Use `.claude/rules/` for rules that only apply to certain file types or directories. For example, a rule that only fires when editing Python files or working inside a specific folder. Each rule file can include a frontmatter `globs` field to scope it.
-
-```
-.claude/rules/
-├── python-style.md       # globs: "*.py" -- Python coding standards
-├── frontend.md           # globs: "src/components/**" -- React conventions
-└── testing.md            # globs: "tests/**" -- Test patterns
-```
+Use `.claude/rules/` for rules that only apply to certain file types or directories. Each rule file can include a frontmatter `globs` field to scope it (for example `globs: "contracts/**"`).
 
 ---
 
 
 ## Update Routing Rules
 
-<!-- If you maintain multiple context repos (e.g., personal + company),
-     these rules tell Claude where to save new information.
-
-     SINGLE REPO: If you only have one repo, simplify this to:
-     "All updates go in this repo. Commit after every meaningful change." -->
-
-### What Goes Where
+All updates go in this repo. Commit after every meaningful change.
 
 **Update this repo when:**
 - Company processes, SOPs, or workflows change
@@ -358,61 +227,30 @@ Use `.claude/rules/` for rules that only apply to certain file types or director
 - Personal opinions about specific people
 - Anything you wouldn't want a team member to see
 
-<!-- ADVANCED: Dual-Brain Architecture
-     Some founders maintain two repos:
-     1. Personal Brain - private context, credentials index, relationship notes,
-        personal goals, daily routines
-     2. Company OS (this repo) - team-safe company context, shared playbooks,
-        brand guidelines, skills
-
-     This separation lets you share Company OS with your team while
-     keeping personal context private. Claude routes updates to the
-     right repo based on these rules. -->
-
 ---
 
 
 ## Credentials and Secrets
 
-<!-- NEVER put actual API keys, passwords, or tokens in this file.
-     This section is an INDEX that tells Claude where to find credentials
-     when it needs them. -->
+This section is an index. Never put actual keys, passwords, or tokens in this repo.
 
 | Service | Where Stored | Notes |
 |---------|-------------|-------|
-| {{service_1}} | Environment variable: `{{ENV_VAR_1}}` | {{notes_1}} |
-| {{service_2}} | {{secrets_manager}} | {{notes_2}} |
-| {{service_3}} | MCP server handles auth | No manual credential needed |
-
-<!-- OPTIONS: env vars (~/.zshrc), external creds file (~/.company-creds),
-     secrets manager (1Password CLI, Doppler), or let MCP handle auth. -->
-
----
-
-
-## Optional: RAG / Vector Search
-
-<!-- For 50+ files, index your .md files in a vector database (Pinecone,
-     Weaviate, Chroma) for semantic search. Chunk by ## headings.
-     Claude can then search the index when it needs context that isn't
-     in immediately loaded files. Delete this section if not using RAG. -->
+| RunPod, Cloudflare, Supabase | Provider secret stores and environment variables | Never committed; `.env` files are gitignored |
+| Shared founder logins | 1Password | Claude never reads or types passwords |
+| GitHub, Gmail, Google Calendar, Google Drive, Apollo, Linear | MCP connectors handle auth | No manual credential needed |
 
 ---
 
 
 ## Quick Start Checklist
 
-<!-- Use this to track your Company OS setup progress.
-     Delete this section once you're fully operational. -->
-
-- [ ] Run interactive setup: "Help me set up my Company OS. Walk me through each section."
-- [ ] Create company/overview.md with your company background
-- [ ] Create company/voice.md with your writing style guidelines
-- [ ] Set up at least one MCP server (GitHub is the easiest starting point)
-- [ ] Create your first custom skill in gtm-skills/ (pick your most repeated task)
-- [ ] Add your safety guard rules for any connected tools
-- [ ] Test: ask Claude "What do you know about us?" and verify it answers correctly
+- [x] Run interactive setup (owner interview, 2026-09-27)
+- [x] Set up at least one MCP server (GitHub plus claude.ai connectors)
+- [ ] Add the two technical co-founders' names to Key People
+- [ ] Fill in `blueprint/company/overview.md` with company background
+- [ ] Fill in `blueprint/company/voice.md` with writing style guidelines
+- [ ] Create the first custom skill: `gtm-skills/pilot-follow-up.md`
+- [ ] Update `.claude/hooks/safety-guard.sh` with the real connector tool names (its list uses generic names such as `mcp__gmail__send_email`)
+- [ ] Test: ask Claude "What do you know about us?" in a new session and verify the answer
 - [ ] Iterate: add more context files as you notice gaps
-
-<!-- Every skill, process, and connection you add makes Claude more
-     capable. Ship v1 today. Improve it every week. -->
