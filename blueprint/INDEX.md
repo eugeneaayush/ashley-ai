@@ -32,5 +32,6 @@
 | gtm-skills/icp-modeller.md | "Build an ICP..." | Ideal Customer Profile modeling |
 | gtm-skills/gtm-strategist.md | "Design a GTM motion..." | GTM strategy and stack planning |
 | gtm-skills/discovery-prep.md | "Prep me for a call..." | Pre-call research briefs |
+| gtm-skills/pilot-follow-up.md | "Write the pilot follow-up..." | Post-call email draft and CRM note that move a pilot to paid |
 
 <!-- Add rows as you create new files. This index is the map. -->

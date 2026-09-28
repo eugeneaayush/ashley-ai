@@ -164,7 +164,7 @@ Not yet connected: HubSpot (needs authorization), Slack, Notion, Supabase, Cloud
 | "Build an ICP" | gtm-skills/icp-modeller.md | Ideal Customer Profile with scoring criteria |
 | "Design our GTM motion" | gtm-skills/gtm-strategist.md | Go-to-market strategy and channel planning |
 | "Prep me for a call" | gtm-skills/discovery-prep.md | Pre-call research briefs and conversation starters |
-| "Follow up with a pilot" | gtm-skills/pilot-follow-up.md (TODO: create) | Updates and next steps for pilot customers such as USAFA and UF |
+| "Write the pilot follow-up" | gtm-skills/pilot-follow-up.md | Post-call email draft and CRM note that move a pilot to a paid plan |
 
 Workflow commands (installed in `.claude/commands/workflows/`): `/workflows:plan`, `/workflows:work`, `/workflows:review`, `/workflows:swarm`, `/workflows:brainstorm`, `/workflows:compound`.
 
@@ -250,7 +250,7 @@ This section is an index. Never put actual keys, passwords, or tokens in this re
 - [ ] Add the two technical co-founders' names to Key People
 - [ ] Fill in `blueprint/company/overview.md` with company background
 - [ ] Fill in `blueprint/company/voice.md` with writing style guidelines
-- [ ] Create the first custom skill: `gtm-skills/pilot-follow-up.md`
+- [x] Create the first custom skill: `gtm-skills/pilot-follow-up.md`
 - [ ] Update `.claude/hooks/safety-guard.sh` with the real connector tool names (its list uses generic names such as `mcp__gmail__send_email`)
 - [ ] Test: ask Claude "What do you know about us?" in a new session and verify the answer
 - [ ] Iterate: add more context files as you notice gaps
